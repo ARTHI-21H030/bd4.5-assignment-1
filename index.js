@@ -167,7 +167,7 @@ app.get('/dishes', async (req, res) => {
 });
 //7
 
-async function getAllDishes(id) {
+async function getAllDishesId(id) {
   const query = 'SELECT * FROM dishes where id=?';
   let response = await db.all(query, [id]);
   return { dishes: response };
@@ -177,7 +177,7 @@ async function getAllDishes(id) {
 app.get('/dishes/details/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    const result = await getAllDishes(id);
+    const result = await getAllDishesId(id);
     if (result.dishes.length === 0) {
       return res.status(404).json({ message: 'No dishes found.' });
     }
